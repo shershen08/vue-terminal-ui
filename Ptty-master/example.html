@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Ptty terminal emulator example</title>
+    <style type="text/css">
+        html,body {height:100%;width:100%;margin:0;padding:0;}
+    </style>
+</head>
+<body>
+    <div id="terminal"></div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="ptty.jquery.js"></script>
+    <script>
+    $(document).ready(function(){
+        // Start ptty
+        var $ptty = $('#terminal').Ptty();
+
+        // Register a command.
+        $ptty.register('command', {
+            name : 'hello',
+            method : function(cmd){
+                cmd.out = '<h1>Hello World!</h1>';
+                return cmd;
+            },
+            help : 'A demo command.'
+        });
+    });
+    </script>
+</body>
+</html>

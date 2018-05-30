@@ -1,6 +1,12 @@
 <template>
   <div id="app">
-    <VueTerminal></VueTerminal>
+ {{text}}
+    <VueTerminal :intro="intro"
+                console-sign="$"
+                allow-arbitrary
+                height="500px"
+                @command="showComand"></VueTerminal>
+   
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   </div>
 </template>
@@ -11,6 +17,17 @@ import VueTerminal from './components/vue-term/VueTerminal.vue'
 
 export default {
   name: 'app',
+  data: function() {
+return {
+    text: '',
+    intro: 'ui console'
+  };
+},
+  methods: {
+    showComand(data){
+      this.text = data
+    }
+  },
   components: {
     HelloWorld,
     VueTerminal
@@ -25,6 +42,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>

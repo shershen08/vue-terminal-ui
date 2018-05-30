@@ -32,6 +32,10 @@ import jQuery from 'jquery'
                     type : 'POST',
                 },
 
+                allowArbitrary: false,
+
+                passCommand: null,
+
                 // The GET/POST parameter that should be used to make requests
                 param        : 'cmd',
 
@@ -303,7 +307,7 @@ import jQuery from 'jquery'
                 }
                 return flag;
             }
-
+            
             /**
             * @method : register
             * @desc   : Adds a method to the specified method stack.
@@ -547,9 +551,16 @@ import jQuery from 'jquery'
                     cmd_name = cmd.split( /\s+/ )[0];
                 }
 
-                if(typeof commands[cmd_name] !== 'undefined'){
+                if( typeof commands[cmd_name] !== 'undefined'){
                     cmd_obj = _public.tokenize(cmd, commands[cmd_name].options);
                 }else{
+
+                    //execute arbitrary commands
+                    if(settings.allowArbitrary) {
+                        settings.passCommand(cmd_name)
+                        return cmd_update();
+                    }
+
                     if(!quiet){
                         cmd_opts.out = cmd_name+' : '+settings.i18n.error_not_found;    
                     }

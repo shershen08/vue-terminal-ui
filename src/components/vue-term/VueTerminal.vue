@@ -1,6 +1,11 @@
 <template>
   <div class="vue-terminal-wrapper">
-      <div id="terminal" class="boring" data-theme="boring"></div>
+      <div v-bind:style="{ maxHeight: this.height }"
+          id="terminal"
+          class="boring"
+          
+          v-bind:class="{ 'default-height': !fullScreen, 'fullscreen-height': fullScreen }"
+          data-theme="boring"></div>
   </div>
 </template>
 
@@ -12,11 +17,20 @@ export default {
   name: 'VueTerminal',
   props: {
     height: {
-      type: String
+      type: String,
+      default: '100%'
     },
     intro: {
       type: String,
       default: ''
+    },
+    allowArbitrary: {
+      type: Boolean,
+      default: false
+    },
+    fullScreen: {
+      type: Boolean,
+      default: false
     },
     consoleSign: {
       type: String,
@@ -24,18 +38,25 @@ export default {
     }
   },
   mounted(){
+
+      const commandEmitter = (commandText) => {
+          this.$emit('command', commandText)
+        }
+
         var $ptty = $('#terminal').Ptty({
           i18n: {
             welcome: this.intro,
           },
-          ps: this.consoleSign
+          ps: this.consoleSign,
+          allowArbitrary: this.allowArbitrary,
+          passCommand:  this.allowArbitrary ? commandEmitter : null
         });
 
         // example - register a command
         $ptty.register('command', {
             name : 'hello',
             method : function(cmd){
-                cmd.out = '<h1>Hello World!</h1>';
+                cmd.out = 'Hello world!';
                 return cmd;
             },
             help : 'A demo command.'
@@ -45,7 +66,8 @@ export default {
 </script>
 
 <style lang="css">
-#terminal {    max-height: 250px;}
+#terminal.default-height { max-height: 250px;}
+#terminal.fullscreen-height { height: 100vh;}
 .boring, .boring .prompt, .boring .content{ font-family: "Courier New", Courier, monospace; background-color: #111; color: #ddd; }
 .boring .content{ padding: 15px 15px 0 15px; }
 .boring .prompt{ padding: 0 15px 15px 15px; }

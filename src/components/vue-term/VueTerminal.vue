@@ -43,7 +43,7 @@ export default {
     },
     consoleSign: {
       type: String,
-      default: '>>'
+      default: '$'
     }
   },
   methods: {
@@ -54,17 +54,23 @@ export default {
   mounted(){
 
       const commandEmitter = (commandText) => {
-          this.$emit('command', commandText)
-          this.toggleWaiting()
-          return new Promise((resolve, reject) => {
-              setTimeout(() => {
-                this.toggleWaiting()
-                resolve('foo')
-              }, 2000);
-              
-          })
+      let prms = new Promise((resolve, reject) => {
+        var data = {
+          text: commandText
         }
+        this.$emit('command', data, resolve, reject)
+        this.toggleWaiting()
+      })
 
+      prms.then((res) => {
+          this.toggleWaiting()
+      }).catch((err) => {
+        this.toggleWaiting()
+      })
+      
+
+      return prms
+    }
         var $ptty = $('#terminal').Ptty({
           i18n: {
             welcome: this.intro,

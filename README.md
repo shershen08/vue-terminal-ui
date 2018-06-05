@@ -29,7 +29,7 @@ components{
 *props*
 
 - `intro` (String) - intro text when terminal starts;
-- `console-sign`(String) - starting symbol for each command line, eg. `my-folder/master $` or just `$`;
+- `console-sign`(String) - starting symbol for each command line, eg. `my-folder/master $` or just `>>`;
 - `allow-arbitrary`(Boolean) - allow type any command in addition to basic ones, then `@command` will be called;
 - `height`(String) - UI block height, eg. `500px`;
 

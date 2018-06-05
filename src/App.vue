@@ -5,7 +5,7 @@
                 console-sign="$"
                 allow-arbitrary
                 height="500px"
-                @command="showComand"></VueTerminal>
+                @command="onCliCommand"></VueTerminal>
    
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   </div>
@@ -15,18 +15,41 @@
 import HelloWorld from './components/HelloWorld.vue'
 import VueTerminal from './components/vue-term/VueTerminal.vue'
 
+const someService = {
+  sendCommand: function(data){
+    return new Promise((resolve) => {
+ setTimeout(() => {
+          resolve(`Dummy answer ... for ${data}`)
+        }, 2000)
+    })
+  }
+}
+
 export default {
   name: 'app',
   data: function() {
 return {
     text: '',
-    intro: 'ui console'
+    intro: 'ui console',
+    sendToAPI: false
   };
 },
   methods: {
-    showComand(data){
-      this.text = data
-    }
+     onCliCommand (data, resolve, reject) {
+      if (this.sendToAPI) {
+        someService.sendCommand(data.text).then(response => {
+          resolve(response.data.text)
+        }).catch(error => {
+          // deal with error
+          reject(error.text)
+        })
+      } else {
+        console.log(data.text)
+        setTimeout(() => {
+          resolve('Dummy answer ...')
+        }, 2000)
+      }
+    },
   },
   components: {
     HelloWorld,

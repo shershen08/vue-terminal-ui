@@ -558,15 +558,16 @@ import jQuery from 'jquery'
                     //execute arbitrary commands
                     if(settings.allowArbitrary) {
                         return settings.passCommand(cmd_name).then(result => {
-                            cmd_obj.out = result
-                            return cmd_update()
+                                cmd_obj.out = result
+                                return cmd_update()
                         })
-                    }
+                    } else {
 
-                    if(!quiet){
-                        cmd_opts.out = cmd_name+' : '+settings.i18n.error_not_found;    
+                        if(!quiet){
+                            cmd_opts.out = cmd_name+' : '+settings.i18n.error_not_found;    
+                        }
+                        return cmd_update();
                     }
-                    return cmd_update();
                 }
 
                 // Run this before every *valid* command

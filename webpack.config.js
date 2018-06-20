@@ -2,7 +2,7 @@ const UglifyEsPlugin = require('uglify-es-webpack-plugin');
 const webpack = require('webpack');
 
 const libraryName = 'vue-terminal-ui';
-const buildTarget = process.env.TARGET === 'umd' ? 'umd' : 'window';
+const buildTarget = process.env.TARGET === 'window' ? 'window' : 'umd';
 const outputFile = `${libraryName}-${buildTarget}.js`;
 
 module.exports = {

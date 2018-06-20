@@ -71,7 +71,7 @@ export default {
 
       return prms
     }
-      var $ptty = $('#terminal').Ptty({
+      var $ptty = $('#terminal', '.vue-terminal-wrapper').Ptty({
         i18n: {
           welcome: this.intro,
         },

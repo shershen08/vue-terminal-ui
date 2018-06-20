@@ -2,6 +2,8 @@
 
 Vuejs component for displaying UI element that acts as console terminal. Actual terminal logic code forked from [Ptty](https://github.com/pachanka/Ptty).
 
+[**Demo available here**](https://codepen.io/shershen08/pen/Keozqx)
+
 ## Install
 
 `npm i vue-terminal-ui --save`
@@ -10,7 +12,7 @@ Vuejs component for displaying UI element that acts as console terminal. Actual 
 
 ```
 // import plugin
-import VueTerminal from 'VueTerminal'
+import VueTerminal from 'vue-terminal-ui'
 
 // add to components section
 components{
@@ -36,6 +38,10 @@ components{
 *event*
 
 - `@command` - callback function to call with command; accepts text, and resolve/reject callbacks
+
+## ToDO
+
+- get rid of jQuery dependancy
 
 ## License
 

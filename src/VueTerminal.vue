@@ -71,14 +71,14 @@ export default {
 
       return prms
     }
-        var $ptty = $('#terminal').Ptty({
-          i18n: {
-            welcome: this.intro,
-          },
-          ps: this.consoleSign,
-          allowArbitrary: this.allowArbitrary,
-          passCommand:  this.allowArbitrary ? commandEmitter : null
-        });
+      var $ptty = $('#terminal').Ptty({
+        i18n: {
+          welcome: this.intro,
+        },
+        ps: this.consoleSign,
+        allowArbitrary: this.allowArbitrary,
+        passCommand:  this.allowArbitrary ? commandEmitter : null
+      });
 
         // example - register a command
         $ptty.register('command', {

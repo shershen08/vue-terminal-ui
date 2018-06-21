@@ -16,7 +16,7 @@
     "@vue/cli-plugin-babel": "^3.0.0-beta.12",
     "@vue/cli-plugin-eslint": "^3.0.0-beta.12",
     "@vue/cli-service": "^3.0.0-beta.12",
-    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-latest": "^6.24.1",
     "eslint": "^3.14.1",
     "eslint-config-standard": "^6.2.1",
     "eslint-friendly-formatter": "^2.0.7",
@@ -27,6 +27,7 @@
     "uglify-es-webpack-plugin": "^0.10.0",
     "uglifyjs-webpack-plugin": "^0.4.6",
     "vue-template-compiler": "^2.5.16",
+    "vue-loader": "^12.0.3",
     "webpack": "^3.4.1"
   },
   "babel": {
@@ -53,6 +54,22 @@
       "autoprefixer": {}
     }
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shershen08/vue-terminal-ui.git"
+  },
+  "author": "Mikhail Kuznetcov",
+  "bugs": {
+    "url": "https://github.com/shershen08/vue-terminal-ui/issues"
+  },
+  "homepage": "https://github.com/shershen08/vue-terminal-ui",
+  "keywords": [
+    "vue",
+    "vuejs",
+    "terminal",
+    "component"
+  ],
+  "license": "MIT",
   "browserslist": [
     "> 1%",
     "last 2 versions",

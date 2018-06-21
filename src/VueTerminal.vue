@@ -19,7 +19,7 @@ import $ from 'jquery'
 
 export default {
   name: 'VueTerminal',
-  data: function(){
+  data: function () {
     return {
       waiting: false
     }
@@ -47,13 +47,12 @@ export default {
     }
   },
   methods: {
-    toggleWaiting(){
+    toggleWaiting () {
       this.waiting = !this.waiting
     }
   },
-  mounted(){
-
-      const commandEmitter = (commandText) => {
+  mounted () {
+    const commandEmitter = (commandText) => {
       let prms = new Promise((resolve, reject) => {
         var data = {
           text: commandText
@@ -63,32 +62,31 @@ export default {
       })
 
       prms.then((res) => {
-          this.toggleWaiting()
-      }).catch((err) => {
+        this.toggleWaiting()
+      }).catch(() => {
         this.toggleWaiting()
       })
-      
 
       return prms
     }
-      var $ptty = $('#terminal', '.vue-terminal-wrapper').Ptty({
-        i18n: {
-          welcome: this.intro,
-        },
-        ps: this.consoleSign,
-        allowArbitrary: this.allowArbitrary,
-        passCommand:  this.allowArbitrary ? commandEmitter : null
-      });
+    var $ptty = $('#terminal', '.vue-terminal-wrapper').Ptty({
+      i18n: {
+        welcome: this.intro
+      },
+      ps: this.consoleSign,
+      allowArbitrary: this.allowArbitrary,
+      passCommand: this.allowArbitrary ? commandEmitter : null
+    })
 
         // example - register a command
-        $ptty.register('command', {
-            name : 'hello',
-            method : function(cmd){
-                cmd.out = 'Hello world!';
-                return cmd;
-            },
-            help : 'A demo command.'
-        });
+    $ptty.register('command', {
+      name: 'hello',
+      method: function (cmd) {
+        cmd.out = 'Hello world!'
+        return cmd
+      },
+      help: 'A demo command.'
+    })
   }
 }
 </script>

@@ -39,7 +39,7 @@ components{
 
 - `@command` - callback function to call with command; accepts text, and resolve/reject callbacks
 
-## ToDO
+## ToDo
 
 - get rid of jQuery dependancy
 

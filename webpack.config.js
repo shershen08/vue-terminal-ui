@@ -7,17 +7,21 @@ const outputFile = `${libraryName}-${buildTarget}.js`;
 
 module.exports = {
      entry: './index.js',
-          output: {
-         path: __dirname,
-         filename: 'dist/vue-terminal-ui.js',
-     },
+        output: {
+            path: __dirname,
+            filename: 'dist/vue-terminal-ui.js',
+        },
      module: {
-         loaders: [{
+         loaders: [
+            {
+				test: /\.vue$/,
+				loader: 'vue-loader'
+			},{
              test: /\.js$/,
              exclude: /node_modules/,
              loader: 'babel-loader',
               query: {
-                presets: ['es2015']
+                presets: ['latest']
             }
          }]
      },

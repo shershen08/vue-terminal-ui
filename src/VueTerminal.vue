@@ -61,12 +61,7 @@ export default {
         this.toggleWaiting()
       })
 
-      prms.then((res) => {
-        this.toggleWaiting()
-      }).catch(() => {
-        this.toggleWaiting()
-      })
-
+      prms.finally(this.toggleWaiting)
       return prms
     }
     var $ptty = $('#terminal', '.vue-terminal-wrapper').Ptty({

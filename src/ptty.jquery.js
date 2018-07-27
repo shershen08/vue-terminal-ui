@@ -557,10 +557,14 @@ import jQuery from 'jquery'
 
                     //execute arbitrary commands
                     if(settings.allowArbitrary) {
-                        return settings.passCommand(cmd_name).then(result => {
+                        add_to_history(cmd)
+                        return settings.passCommand(cmd).then(result => {
                                 cmd_obj.out = result
                                 return cmd_update()
-                        })
+                        }).catch(error => {
+                            cmd_obj.out = error
+                            return cmd_update()
+                    })
                     } else {
 
                         if(!quiet){
@@ -732,9 +736,10 @@ import jQuery from 'jquery'
 
             // Add to history
             var add_to_history = function(str) {
-                if( typeof commands[cmd_name] !== 'undefined' 
-                    && str !== '' 
-                    && save_to_history > 0) {
+                const isProper = typeof commands[cmd_name] !== 'undefined' 
+                && str !== '' 
+                && save_to_history > 0
+                if( isProper || options.allowArbitrary) {
 
                     if( history.length > settings.history_entries ){
                         history.shift();

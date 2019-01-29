@@ -17,7 +17,17 @@ import VueTerminal from 'vue-terminal-ui'
 // add to components section
 components{
     VueTerminal
-}
+},
+// add method to call on command is typed
+ methods: {
+    onCliCommand(data, resolve, reject){
+      // typed command is available in data.text
+      // don't forget to resolve or reject the Promise
+      setTimeout(()=> {
+        resolve('')
+      }, 300)
+    }
+  },
 // use in template
    <VueTerminal :intro="intro"
                 console-sign="$"

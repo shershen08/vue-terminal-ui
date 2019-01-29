@@ -2,7 +2,8 @@
 
 Vuejs component for displaying UI element that acts as console terminal. Actual terminal logic code forked from [Ptty](https://github.com/pachanka/Ptty).
 
-[**Demo available here**](https://codepen.io/shershen08/pen/Keozqx)
+## Demo/sandbox available here:
+[![Edit Vue Template](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/4xxxkznk74)
 
 ## Install
 

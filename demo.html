@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>sample app</title>
+    <script src="https://unpkg.com/vue"></script>
+  </head>
+  <body>
+    <div id="app">
+        <p>{{ message }}</p>
+        <VueTerminal :intro="intro"
+        console-sign="$"
+        allow-arbitrary
+        height="500px"
+        @command="onCliCommand"></VueTerminal>
+    </div>
+    
+    <script type="module">
+        import VueTerminal from './index.js'
+
+        new Vue({
+    el: '#app',
+    data: {
+        message: 'Hello Vue.js!'
+    },
+    components: {
+        VueTerminal
+    },
+    methods: {
+        onCliCommand(data, resolve, reject){
+        // typed command is available in data.text
+        // don't forget to resolve or reject the Promise
+        setTimeout(()=> {
+            resolve('')
+        }, 300)
+        }
+    },
+    })
+    </script>              
+  </body>
+</html>

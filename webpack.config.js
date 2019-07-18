@@ -3,10 +3,11 @@ const webpack = require('webpack');
 
 const libraryName = 'vue-terminal-ui';
 const buildTarget = process.env.TARGET === 'window' ? 'window' : 'umd';
+const sourceFile = process.env.SERVE ? './sample/main.js' : './index.js';
 const outputFile = `${libraryName}-${buildTarget}.js`;
 
 module.exports = {
-     entry: './index.js',
+     entry: sourceFile,
         output: {
             path: __dirname,
             filename: 'dist/vue-terminal-ui.js',

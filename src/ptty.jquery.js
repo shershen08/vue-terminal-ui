@@ -558,7 +558,7 @@ import jQuery from 'jquery'
                     //execute arbitrary commands
                     if(settings.allowArbitrary) {
                         add_to_history(cmd)
-                        return settings.passCommand(cmd).then(result => {
+                        return settings.passCommand(cmd_obj.last).then(result => {
                                 cmd_obj.out = result
                                 return cmd_update()
                         }).catch(error => {
